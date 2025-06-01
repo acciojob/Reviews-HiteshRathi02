@@ -41,7 +41,7 @@ const reviews = [
 ];
 
 export default function App(){
-    const [page,setPage] = useState(2);
+    const [page,setPage] = useState(1);
     const handlePrevBtn = ()=>{
         if(page !=1){
             setPage(page-1);
