@@ -63,7 +63,7 @@ export default function App(){
         <section className="container">
             <h1 id="review-heading">Our Reviews</h1>
             {reviews.map((review)=>{
-                return (review.id===page && (<Review review={review} handleNextBtn={handleNextBtn} handlePrevBtn={handlePrevBtn} handleRandBtn={handleRandBtn} />))
+                return (review.id===page && (<Review review={review} key={review.id} handleNextBtn={handleNextBtn} handlePrevBtn={handlePrevBtn} handleRandBtn={handleRandBtn} />))
             })}
         </section>
         </>
