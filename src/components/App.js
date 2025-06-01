@@ -41,20 +41,21 @@ const reviews = [
 ];
 
 export default function App(){
-    const [page,setPage] = useState(1);
+    const [index,setIndex] = useState(0);
     const handlePrevBtn = ()=>{
-        if(page !=1){
-            setPage(page-1);
-        }
+        setIndex((index) =>
+            index === 0 ? reviews.length - 1 : index - 1
+        );
     }
     const handleNextBtn = ()=>{
-        if(page !=4){
-            setPage(page+1);
-        }
+       setIndex((prevIndex) => (prevIndex + 1) % reviews.length);
     }
     const handleRandBtn = ()=>{
-        const pageNo= Math.floor(Math.random()*4+1);
-        setPage(pageNo);
+      let randomIndex;
+      do{
+        randomIndex = Math.floor(Math.random() * reviews.length );
+      }while(randomIndex===index)
+        setIndex(randomIndex);
     }
 
 
@@ -63,7 +64,7 @@ export default function App(){
         <section className="container">
             <h1 id="review-heading">Our Reviews</h1>
             {reviews.map((review)=>{
-                return (review.id===page && (<Review review={review} key={review.id} handleNextBtn={handleNextBtn} handlePrevBtn={handlePrevBtn} handleRandBtn={handleRandBtn} />))
+                return (review.id===index+1 && (<Review review={review} key={review.id} handleNextBtn={handleNextBtn} handlePrevBtn={handlePrevBtn} handleRandBtn={handleRandBtn} />))
             })}
         </section>
         </>
